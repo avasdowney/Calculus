@@ -5,6 +5,7 @@
 import math
 import time
 from termcolor import cprint
+from termcolor import colored
 
 # Startup to code telling the user what the program is capable of doing, as
 # well as what they are expected to input
@@ -26,7 +27,7 @@ print ("    - Midpoint Rule")
 time.sleep(.5)
 print ("    - Trapezoidal Rule \n ")
 time.sleep(2)
-cprint ("------------------------------------------------------------")
+print ("------------------------------------------------------------")
 time.sleep(.5)
 
 # Takes users input on the method they want to use, the function they are
@@ -37,11 +38,13 @@ print ("")
 running = True
 
 def bound():
-    cprint ("You are going to use the {} method! \n".format(method), 'blue')
-    equation = raw_input("What is your equation? \n        >> ")
+    print colored ("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+    equation = raw_input("What is your equation? \n        >> ") # capture an equation written in terms of f
+    f = eval("lambda x: " + equation) # convert the equation string to an actual lamdba function
     dx = input("What is your change in x? \n        >> ")
     lower = input("What is your lower bound? \n        >> ")
     upper = input("What is your upper bound? \n        >> ")
+    print(f(2))
 
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
