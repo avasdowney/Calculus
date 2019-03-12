@@ -44,7 +44,16 @@ def bound():
     dx = input("What is your change in x? \n        >> ")
     lower = input("What is your lower bound? \n        >> ")
     upper = input("What is your upper bound? \n        >> ")
-    print(f(2))
+    total = 0
+
+    for x in range(lower, upper, dx):
+        result = f(x)
+        total = total + result
+        print result
+
+    print total
+
+
 
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
