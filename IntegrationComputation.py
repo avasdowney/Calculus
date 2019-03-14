@@ -1,3 +1,6 @@
+# https://www.emathhelp.net/calculators/calculus-2/riemann-sum-calculator/
+
+
 # This program will calculate Left and Right hand Riemann Sums, Midpoint Rule,
 # and Trapezoidal Rule depending on which you chose and the upper and lower
 # bounds, and function given by the user.
@@ -39,21 +42,14 @@ running = True
 
 def bound():
     print colored ("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-    equation = raw_input("What is your equation? \n        >> ") # capture an equation written in terms of f
-    f = eval("lambda x: " + equation) # convert the equation string to an actual lamdba function
-    dx = input("What is your change in x? \n        >> ")
-    lower = input("What is your lower bound? \n        >> ")
-    upper = input("What is your upper bound? \n        >> ")
-    total = 0
-
-    for x in range(lower, upper, dx):
-        result = f(x)
-        total = total + result
-        print result
-
-    print total
-
-
+    equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+    f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+    n = float(input("How many sections do you want? \n        >> "))
+    a = float(input("What is your lower bound? \n        >> "))
+    b = float(input("What is your upper bound? \n        >> "))
+    dx = float((b - a) / n)
+    s = 0
+    a = a + dx
 
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
@@ -62,9 +58,41 @@ def bound():
 
 while (running == True):
     if method == 'left hand sums':
-        bound()
+        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+        n = float(input("How many sections do you want? \n        >> "))
+        a = float(input("What is your lower bound? \n        >> "))
+        b = float(input("What is your upper bound? \n        >> "))
+        dx = float((b - a) / n)
+        s = 0
+        a = a + dx
+        while a <= b:
+            s = s + f(a) * dx
+            a = a + dx
+            print("")
+            print (s)
+        print colored ("The area under the curve is "), colored(s, 'green', attrs=['underline'])
+        running = False
+
     elif method == 'right hand sums':
-        bound()
+        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+        n = float(input("How many sections do you want? \n        >> "))
+        a = float(input("What is your lower bound? \n        >> "))
+        b = float(input("What is your upper bound? \n        >> "))
+        dx = float((b - a) / n)
+        s = 0
+        a = a + dx
+        while b >= a:
+            s = s + f(a) * dx
+            a = a + dx
+            print("")
+            print (s)
+        print colored ("The area under the curve is "), colored(s, 'green', attrs=['underline'])
+        running = False
+
     elif method == 'midpoint rule':
         bound()
     elif method == 'trapezoidal rule':
