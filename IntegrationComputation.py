@@ -1,6 +1,3 @@
-# https://www.emathhelp.net/calculators/calculus-2/riemann-sum-calculator/
-
-
 # This program will calculate Left and Right hand Riemann Sums, Midpoint Rule,
 # and Trapezoidal Rule depending on which you chose and the upper and lower
 # bounds, and function given by the user.
@@ -40,63 +37,91 @@ method = raw_input("\n Which method would you like to use? \n       >> ").lower(
 print ("")
 running = True
 
-def bound():
-    print colored ("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-    equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-    f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-    n = float(input("How many sections do you want? \n        >> "))
-    a = float(input("What is your lower bound? \n        >> "))
-    b = float(input("What is your upper bound? \n        >> "))
-    dx = float((b - a) / n)
-    s = 0
-    a = a + dx
-
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
 # none of the methods are chosen, it will prompt the user with an
 # error message and instructions to correctly initiate the program.
+
+# solves for left hand sums
 
 while (running == True):
     if method == 'left hand sums':
         print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
         equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
         f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))
-        a = float(input("What is your lower bound? \n        >> "))
-        b = float(input("What is your upper bound? \n        >> "))
-        dx = float((b - a) / n)
+        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+        dx = float((b - a) / n)  # finds change in x
         s = 0
         a = a + dx
-        while a <= b:
-            s = s + f(a) * dx
-            a = a + dx
+        while a <= b:   # checks if in x value range
+            s = s + f(a) * dx   # calculates sum at each step
+            a = a + dx  # adds dx to the lower x value
             print("")
             print (s)
-        print colored ("The area under the curve is "), colored(s, 'green', attrs=['underline'])
+        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
         running = False
+
+# solves for right hand sums
 
     elif method == 'right hand sums':
         print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
         equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
         f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))
-        a = float(input("What is your lower bound? \n        >> "))
-        b = float(input("What is your upper bound? \n        >> "))
-        dx = float((b - a) / n)
+        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+        dx = float((b - a) / n)  # finds change in x
         s = 0
         a = a + dx
-        while b >= a:
-            s = s + f(a) * dx
-            a = a + dx
-            print("")
+        while b >= a:   # checks if in x value range
+            s = s + f(a) * dx   # solves for sum at each step
+            a = a + dx  # adds dx to the lower x value
             print (s)
-        print colored ("The area under the curve is "), colored(s, 'green', attrs=['underline'])
+        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
         running = False
 
-    elif method == 'midpoint rule':
-        bound()
+# solves with trapezoidal rule
+
     elif method == 'trapezoidal rule':
-        bound()
+        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+        dx = float((b - a) / n)  # finds change in x
+        s = 0
+        a = a + dx
+        while a <= b:   # checks if in x value range
+            s = s + ((f(a) + f(a + dx) / 2) * dx)   # solves for sum at each step
+            a = a + dx  # adds dx to lower x value
+            print (s)
+        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
+        running = False
+
+# solves with midpoint rule
+
+    elif method == 'midpoint rule':
+        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+        dx = float((b - a) / n)  # finds change in x
+        s = 0
+        a = a + dx
+        while a <= b:   # checks if in x value range
+            s = s + (f((a) + (a - dx) / 2) * dx)    # solves for sum at each step
+            a = a + dx  # adds dx to lower x value
+            print (s)
+        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
+        running = False
+
+# displays error message when a method is not chosen
+
     else:
         method = method.title()
         cprint ("'{}' is not one of the options. Try one of the following methods.".format(method), 'red')
