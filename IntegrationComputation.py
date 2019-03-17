@@ -36,6 +36,7 @@ time.sleep(.5)
 method = raw_input("\n Which method would you like to use? \n       >> ").lower()
 print ("")
 running = True
+bound = False
 
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
@@ -45,7 +46,7 @@ running = True
 # solves for left hand sums
 
 while (running == True):
-    if method == 'left hand sums':
+    if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
         print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
         equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
         f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
@@ -55,6 +56,8 @@ while (running == True):
         dx = float((b - a) / n)  # finds change in x
         s = 0
         a = a + dx
+        bound = True
+    if method == 'left hand sums':
         while a <= b:   # checks if in x value range
             s = s + f(a) * dx   # calculates sum at each step
             a = a + dx  # adds dx to the lower x value
@@ -66,15 +69,6 @@ while (running == True):
 # solves for right hand sums
 
     elif method == 'right hand sums':
-        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-        dx = float((b - a) / n)  # finds change in x
-        s = 0
-        a = a + dx
         while b >= a:   # checks if in x value range
             s = s + f(a) * dx   # solves for sum at each step
             a = a + dx  # adds dx to the lower x value
@@ -85,15 +79,6 @@ while (running == True):
 # solves with trapezoidal rule
 
     elif method == 'trapezoidal rule':
-        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-        dx = float((b - a) / n)  # finds change in x
-        s = 0
-        a = a + dx
         while a <= b:   # checks if in x value range
             s = s + ((f(a) + f(a + dx) / 2) * dx)   # solves for sum at each step
             a = a + dx  # adds dx to lower x value
@@ -104,15 +89,6 @@ while (running == True):
 # solves with midpoint rule
 
     elif method == 'midpoint rule':
-        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-        dx = float((b - a) / n)  # finds change in x
-        s = 0
-        a = a + dx
         while a <= b:   # checks if in x value range
             s = s + (f((a) + (a - dx) / 2) * dx)    # solves for sum at each step
             a = a + dx  # adds dx to lower x value
