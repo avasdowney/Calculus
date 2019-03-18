@@ -2,7 +2,7 @@
 # and Trapezoidal Rule depending on which you chose and the upper and lower
 # bounds, and function given by the user.
 
-import math
+from math import *
 import time
 from termcolor import cprint
 from termcolor import colored
