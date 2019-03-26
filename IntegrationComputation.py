@@ -26,7 +26,7 @@ time.sleep(.5)
 print ("    - Midpoint Rule")
 time.sleep(.5)
 print ("    - Trapezoidal Rule \n ")
-time.sleep(2)
+time.sleep(.5)
 print ("------------------------------------------------------------")
 time.sleep(.5)
 
@@ -46,55 +46,105 @@ bound = False
 # solves for left hand sums
 
 while (running == True):
-    if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
-        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-        dx = float((b - a) / n)  # finds change in x
-        s = 0
-        a = a + dx
-        bound = True
-    if method == 'left hand sums':
+
+    if method == 'all':
+        if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
+            print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored(
+                "method! \n")
+            equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+            f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+            n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+            a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+            b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+            dx = float((b - a) / n)  # finds change in x
+            s = 0
+            a = a + dx
+            bound = True
+        method = 'left hand sums'
+        if method == 'left hand sums':
+            while a <= b:  # checks if in x value range
+                s = s + f(a) * dx  # calculates sum at each step
+                a = a + dx  # adds dx to the lower x value
+                print("")
+                print (s)
+            print colored("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
+            method = 'right hand sums'
+        # solves for midpoint rule
+
+        elif method == 'midpoint rule':
+            while b >= a:  # checks if in x value range
+                s = s + f(a + .5 * dx) * dx  # states the area under the curve
+                a = a + dx
+                print (s)
+            print colored("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the cur
+            method = 'trapezoidal rule'
+
+        # solves with trapezoidal rule
+
+        elif method == 'trapezoidal rule':
+            while a <= b:  # checks if in x value range
+                s = s + ((f(a) + f(a + dx)) / 2) * dx  # solves for sum at each step
+                a = a + dx  # adds dx to lower x value
+                print (s)
+            print colored("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curv
+            running = False
+
+        # solves with right hand sums
+
+        elif method == 'right hand sums':
+            while a <= b:  # checks if in x value range
+                s = s + (f(a) * dx)  # solves for sum at each step
+                a = a + dx  # adds dx to lower x value
+                print (s)
+            print colored("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
+            method = 'midpoint rule'
+
+        if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
+            print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+            equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+            f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+            n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+            a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+            b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+            dx = float((b - a) / n)  # finds change in x
+            s = 0
+            a = a + dx
+            bound = True
+
+    elif method == 'left hand sums':
         while a <= b:   # checks if in x value range
             s = s + f(a) * dx   # calculates sum at each step
             a = a + dx  # adds dx to the lower x value
             print("")
             print (s)
         print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
-        running = False
 
-# solves for right hand sums
+# solves for midpoint rule
 
-    elif method == 'right hand sums':
+    elif method == 'midpoint rule':
         while b >= a:   # checks if in x value range
-            s = s + f(a) * dx   # solves for sum at each step
-            a = a + dx  # adds dx to the lower x value
+            s = s + f(a+.5*dx)*dx   # states the area under the curve
+            a = a + dx
             print (s)
-        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
-        running = False
+        print colored("\nThe area under the curve is "), colored(s, 'green',attrs=['underline'])  # states the area under the cur
 
 # solves with trapezoidal rule
 
     elif method == 'trapezoidal rule':
         while a <= b:   # checks if in x value range
-            s = s + ((f(a) + f(a + dx) / 2) * dx)   # solves for sum at each step
+            s = s + ((f(a) + f(a+dx))/2) * dx   # solves for sum at each step
             a = a + dx  # adds dx to lower x value
             print (s)
-        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
-        running = False
+        print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curv
 
-# solves with midpoint rule
+# solves with right hand sums
 
-    elif method == 'midpoint rule':
+    elif method == 'right hand sums':
         while a <= b:   # checks if in x value range
-            s = s + (f((a) + (a - dx) / 2) * dx)    # solves for sum at each step
+            s = s + (f(a) * dx)    # solves for sum at each step
             a = a + dx  # adds dx to lower x value
             print (s)
         print colored ("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
-        running = False
 
 # displays error message when a method is not chosen
 
