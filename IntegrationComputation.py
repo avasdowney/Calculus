@@ -45,8 +45,6 @@ bound = False
 # none of the methods are chosen, it will prompt the user with an
 # error message and instructions to correctly initiate the program.
 
-# solves for left hand sums
-
 while (running == True):
     if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule' or method == 'all':
         print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
@@ -63,7 +61,7 @@ while (running == True):
         a = aa
         if method == 'all':
             # Right hand sums
-            while a <= b:  # checks if in x value range
+            while a > b:  # checks if in x value range
                 sa = sa + f(a) * dx  # calculates sum at each step
                 a = a + dx  # adds dx to the lower x value
 
@@ -91,8 +89,8 @@ while (running == True):
                 sd = sd + ((f(a) + f(a + dx)) / 2) * dx  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
 
-            print ("Left Hand Sums Area: "), colored(sa, 'green', attrs=['underline'])
-            print ("Right Hand Sums Area: "), colored(sb, 'green', attrs=['underline'])
+            print ("Left Hand Sums Area: "), colored(sb, 'green', attrs=['underline'])
+            print ("Right Hand Sums Area: "), colored(sa, 'green', attrs=['underline'])
             print ("Midpoint Rule Area: "), colored(sc, 'green', attrs=['underline'])
             print ("Trapezoidal Rule Area: "), colored(sd, 'green', attrs=['underline'])
             running = False
@@ -111,7 +109,7 @@ while (running == True):
         # solves for midpoint rule
 
         elif method == 'midpoint rule':
-            while b >= a:  # checks if in x value range
+            while b > a:  # checks if in x value range
                 s = s + f(a + .5 * dx) * dx  # states the area under the curve
                 a = a + dx
                 print (s)
@@ -122,7 +120,7 @@ while (running == True):
         # solves with trapezoidal rule
 
         elif method == 'trapezoidal rule':
-            while a <= b:  # checks if in x value range
+            while a < b:  # checks if in x value range
                 s = s + ((f(a) + f(a + dx)) / 2) * dx  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
                 print (s)
@@ -133,7 +131,7 @@ while (running == True):
         # solves with right hand sums
 
         elif method == 'right hand sums':
-            while a <= b:  # checks if in x value range
+            while a < b:  # checks if in x value range
                 s = s + (f(a) * dx)  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
                 print (s)
