@@ -71,7 +71,7 @@ while (running == True):
             a = aa
 
             # Left hand sums
-            while a <= b:  # checks if in x value range
+            while a < b:  # checks if in x value range
                 sb = sb + (f(a) * dx)  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
 
@@ -79,7 +79,7 @@ while (running == True):
             a = aa
 
             # Midpoint rule
-            while b >= a:  # checks if in x value range
+            while b > a:  # checks if in x value range
                 sc = sc + f(a + .5 * dx) * dx  # states the area under the curve
                 a = a + dx
 
@@ -87,7 +87,7 @@ while (running == True):
             a = aa
 
             # Trapezoidal Rule
-            while a <= b:  # checks if in x value range
+            while a < b:  # checks if in x value range
                 sd = sd + ((f(a) + f(a + dx)) / 2) * dx  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
 
@@ -100,12 +100,13 @@ while (running == True):
         # solves for left hand sums
 
         elif method == 'left hand sums':
-            while a <= b:  # checks if in x value range
+            while a < b:  # checks if in x value range
                 s = s + f(a) * dx  # calculates sum at each step
                 a = a + dx  # adds dx to the lower x value
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=[
                 'underline'])  # states the area under the curve
+            running = False
 
         # solves for midpoint rule
 
@@ -115,7 +116,8 @@ while (running == True):
                 a = a + dx
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=[
-                'underline'])  # states the area under the cur
+                'underline'])  # states the area under the curve
+            running = False
 
         # solves with trapezoidal rule
 
@@ -125,7 +127,8 @@ while (running == True):
                 a = a + dx  # adds dx to lower x value
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=[
-                'underline'])  # states the area under the curv
+                'underline'])  # states the area under the curve
+            running = False
 
         # solves with right hand sums
 
@@ -136,6 +139,7 @@ while (running == True):
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=[
                 'underline'])  # states the area under the curve
+            running = False
 
         bound = True
 
