@@ -46,20 +46,19 @@ bound = False
 # solves for left hand sums
 
 while (running == True):
+    if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
+        print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
+        equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
+        f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
+        n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
+        a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
+        b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
+        dx = float((b - a) / n)  # finds change in x
+        s = 0
+        a = a + dx
+        bound = True
 
     if method == 'all':
-        if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
-            print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored(
-                "method! \n")
-            equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-            f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-            n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-            a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-            b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-            dx = float((b - a) / n)  # finds change in x
-            s = 0
-            a = a + dx
-            bound = True
         method = 'left hand sums'
         if method == 'left hand sums':
             while a <= b:  # checks if in x value range
@@ -98,18 +97,6 @@ while (running == True):
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=['underline'])  # states the area under the curve
             method = 'midpoint rule'
-
-        if bound == False and method == 'left hand sums' or method == 'right hand sums' or method == 'trapezoidal rule' or method == 'midpoint rule':
-            print colored("You are going to use the"), colored(method, 'green', attrs=['underline']), colored("method! \n")
-            equation = raw_input("What is your equation? \n        >> ")  # capture an equation written in terms of f
-            f = eval("lambda x: " + equation)  # convert the equation string to an actual lamdba function
-            n = float(input("How many sections do you want? \n        >> "))  # takes input for how many sections
-            a = float(input("What is your lower bound? \n        >> "))  # takes lower bound
-            b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
-            dx = float((b - a) / n)  # finds change in x
-            s = 0
-            a = a + dx
-            bound = True
 
     elif method == 'left hand sums':
         while a <= b:   # checks if in x value range
