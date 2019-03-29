@@ -12,25 +12,15 @@ from termcolor import colored
 
 print ("")
 cprint ("Integration Computation \n", 'magenta', attrs=['underline', 'bold'])
-time.sleep(.5)
 print ("This program finds the area under the curve of any function")
-time.sleep(.5)
 print ("based on an upper and lower bound given. You can use any of")
-time.sleep(.5)
 print ("the following methods!")
-time.sleep(.5)
 print ("    - Left Hand Sums")
-time.sleep(.5)
 print ("    - Right Hand Sums")
-time.sleep(.5)
 print ("    - Midpoint Rule")
-time.sleep(.5)
 print ("    - Trapezoidal Rule")
-time.sleep(.5)
 print ("    - All \n ")
-time.sleep(.5)
 print ("------------------------------------------------------------")
-time.sleep(.5)
 
 # Takes users input on the method they want to use, the function they are
 # evaluating, the change in x, and the upper and lower bounds.
@@ -39,6 +29,8 @@ method = raw_input("\n Which method would you like to use? \n       >> ").lower(
 print ("")
 running = True
 bound = False
+sa = 0
+s = 0
 
 # According to the variables defined above, the area under the curve
 # will be calculated here in the correct way using if statements. If
@@ -55,14 +47,12 @@ while (running == True):
         b = float(input("What is your upper bound? \n        >> "))  # takes upper bound
         print ("")
         dx = float((b - a) / n)  # finds change in x
-        sa = 0
         aa = 0
-        a = a + dx
         a = aa
         if method == 'all':
             # Right hand sums
-            while a > b:  # checks if in x value range
-                sa = sa + f(a) * dx  # calculates sum at each step
+            while ((a + dx) <= b):  # checks if in x value range
+                sa = sa + (f(a) * dx)  # calculates sum at each step
                 a = a + dx  # adds dx to the lower x value
 
             sb = 0
