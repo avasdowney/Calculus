@@ -49,6 +49,7 @@ while (running == True):
         dx = float((b - a) / n)  # finds change in x
         aa = 0
         a = aa
+        s = 0
         if method == 'all':
             # Right hand sums
             while ((a + dx) <= b):  # checks if in x value range
@@ -59,7 +60,7 @@ while (running == True):
             a = aa
 
             # Left hand sums
-            while a < b:  # checks if in x value range
+            while a < b - dx:  # checks if in x value range
                 sb = sb + (f(a) * dx)  # solves for sum at each step
                 a = a + dx  # adds dx to lower x value
 
@@ -88,9 +89,9 @@ while (running == True):
         # solves for left hand sums
 
         elif method == 'left hand sums':
-            while a < b:  # checks if in x value range
-                s = s + f(a) * dx  # calculates sum at each step
+            while a <= b:  # checks if in x value range
                 a = a + dx  # adds dx to the lower x value
+                s = s + f(a) * dx  # calculates sum at each step
                 print (s)
             print colored("\nThe area under the curve is "), colored(s, 'green', attrs=[
                 'underline'])  # states the area under the curve
